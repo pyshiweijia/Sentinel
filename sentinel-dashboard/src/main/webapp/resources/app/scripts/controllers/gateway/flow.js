@@ -157,6 +157,10 @@ app.controller('GatewayFlowCtl', ['$scope', '$stateParams', 'GatewayFlowService'
         if (data.code == 0) {
           getMachineRules();
           gatewayFlowRuleDialog.close();
+          // 添加延迟二次刷新
+          setTimeout(function() {
+             getMachineRules();
+          }, 1000);
         } else {
           alert('新增网关流控规则失败!' + data.msg);
         }
@@ -172,6 +176,10 @@ app.controller('GatewayFlowCtl', ['$scope', '$stateParams', 'GatewayFlowService'
           } else {
             confirmDialog.close();
           }
+          // 添加延迟二次刷新
+          setTimeout(function() {
+             getMachineRules();
+          }, 1000);
         } else {
           alert('修改网关流控规则失败!' + data.msg);
         }
@@ -208,6 +216,10 @@ app.controller('GatewayFlowCtl', ['$scope', '$stateParams', 'GatewayFlowService'
         if (data.code == 0) {
           getMachineRules();
           confirmDialog.close();
+          // 添加延迟二次刷新
+          setTimeout(function() {
+             getMachineRules();
+          }, 1000);
         } else {
           alert('删除网关流控规则失败!' + data.msg);
         }

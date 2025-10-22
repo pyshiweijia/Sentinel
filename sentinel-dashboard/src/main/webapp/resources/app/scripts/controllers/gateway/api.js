@@ -132,6 +132,10 @@ app.controller('GatewayApiCtl', ['$scope', '$stateParams', 'GatewayApiService', 
         if (data.code == 0) {
           getApis();
           gatewayApiDialog.close();
+          // 添加延迟二次刷新
+          setTimeout(function() {
+             getApis();
+          }, 1000);
         } else {
           alert('新增自定义API失败!' + data.msg);
         }
@@ -147,6 +151,10 @@ app.controller('GatewayApiCtl', ['$scope', '$stateParams', 'GatewayApiService', 
           } else {
             confirmDialog.close();
           }
+          // 添加延迟二次刷新
+          setTimeout(function() {
+             getApis();
+          }, 1000);
         } else {
           alert('修改自定义API失败!' + data.msg);
         }
@@ -183,6 +191,10 @@ app.controller('GatewayApiCtl', ['$scope', '$stateParams', 'GatewayApiService', 
         if (data.code == 0) {
           getApis();
           confirmDialog.close();
+          // 添加延迟二次刷新
+          setTimeout(function() {
+            getApis();
+          }, 1000);
         } else {
           alert('删除自定义API失败!' + data.msg);
         }

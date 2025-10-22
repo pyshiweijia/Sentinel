@@ -15,36 +15,63 @@
  */
 package com.alibaba.csp.sentinel.dashboard.datasource.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 import java.util.Date;
 
 /**
  * @author leyou
  */
+@Document(indexName = "sentinel_metrics")
 public class MetricEntity {
-    private Long id;
+    @Id
+    private String id;
+
+    @Field(type = FieldType.Date)
     private Date gmtCreate;
+
+    @Field(type = FieldType.Date)
     private Date gmtModified;
+
+    @Field(type = FieldType.Keyword)
     private String app;
     /**
      * 监控信息的时间戳
      */
+    @Field(type = FieldType.Date)
     private Date timestamp;
+
+    @Field(type = FieldType.Keyword)
     private String resource;
+
+    @Field(type = FieldType.Long)
     private Long passQps;
+
+    @Field(type = FieldType.Long)
     private Long successQps;
+
+    @Field(type = FieldType.Long)
     private Long blockQps;
+
+    @Field(type = FieldType.Long)
     private Long exceptionQps;
 
     /**
      * summary rt of all success exit qps.
      */
+    @Field(type = FieldType.Double)
     private double rt;
 
     /**
      * 本次聚合的总条数
      */
+    @Field(type = FieldType.Integer)
     private int count;
 
+    @Field(type = FieldType.Integer)
     private int resourceCode;
 
     public static MetricEntity copyOf(MetricEntity oldEntity) {
@@ -96,11 +123,11 @@ public class MetricEntity {
         this.successQps = successQps;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -19,6 +19,7 @@ import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.GatewayFlowR
 import com.alibaba.csp.sentinel.dashboard.repository.rule.InMemoryRuleRepositoryAdapter;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -34,6 +35,7 @@ public class InMemGatewayFlowRuleStore extends InMemoryRuleRepositoryAdapter<Gat
 
     @Override
     protected long nextId() {
-        return ids.incrementAndGet();
+        String id = System.currentTimeMillis() + String.format("%02d", ThreadLocalRandom.current().nextInt(100));
+        return Long.parseLong(id);
     }
 }
